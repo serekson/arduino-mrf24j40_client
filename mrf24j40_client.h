@@ -7,13 +7,14 @@
 
 class MRFClient : public MRFDriver {
   private:
+	Node parent;
 
   public:
   uint8_t _join_stat;
   uint16_t _panid;
-  DeviceAddress _parent_addr;
-  uint32_t _last_time;
-  uint32_t _beacon_timer;
+  //DeviceAddress _parent_addr;
+  //uint32_t _last_time;
+  //uint32_t _beacon_timer;
   
   uint8_t _hops;
   
@@ -21,14 +22,14 @@ class MRFClient : public MRFDriver {
   
   MRFClient(int pin_cs, int pin_int);
   
+  void init(void);
   void init_client(void);
+  void client_loop(void);
   
   void tx_beacon_req(void);
   void tx_assoc_req(void);
   void tx_data_cmd(DeviceAddress dest_addr, byte data_cmd);
   void tx_data_queue(uint8_t len) ;
-  
-  void client_loop(void);
   
   void rx_packet(void);
   void rx_beacon(void);
